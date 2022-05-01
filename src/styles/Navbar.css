@@ -21,3 +21,11 @@
 .NavOptions, a:hover{
     color:#0880A1;
 }
+
+.CartWidget{
+    display: flex;
+}
+
+.CartWidget, p{
+    padding-left: 8px;
+}
