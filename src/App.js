@@ -1,8 +1,8 @@
+import Navbar from "./components/Navbar/Navbar";
 function App() {
   return (
     <div>
-      <h1>¡Hola Tutora!</h1>
-      <p></p>
+      <Navbar />
     </div>
   );
 }

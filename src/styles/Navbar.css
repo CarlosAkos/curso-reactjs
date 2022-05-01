@@ -1,0 +1,23 @@
+.Header{
+    background-color: rgb(244, 244, 244);
+    padding: 24px 60px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.NavOptions{
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.NavOptions, a{
+    text-decoration: none;
+    color: rgb(60, 60, 60);
+}
+
+.NavOptions, a:hover{
+    color:#0880A1;
+}
