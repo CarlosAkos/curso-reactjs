@@ -4,7 +4,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <ItemlistContainer greetings={"Saludos Mundo"}/>
+      <ItemlistContainer greetings={"Contador de unidades"}/>
     </>
   );
 }
