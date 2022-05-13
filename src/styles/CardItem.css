@@ -1,0 +1,10 @@
+.CardItem{
+    width: 13rem;
+    background-color: rgb(244, 244, 244);
+}
+.cardItem, img{
+    max-width: 100%;
+}
+.cardInfo{
+    padding: 0.5rem;
+}

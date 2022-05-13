@@ -1,4 +1,5 @@
 @import url(./Navbar.css);
+@import url(./CardItem.css);
 
 *{
     padding: 0;
