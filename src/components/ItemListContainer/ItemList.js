@@ -15,7 +15,7 @@ export default function ItemList(){
     })
 
     return(
-        <div>
+        <div className="ItemListContainer">
         {products.map((product) => {
             return(
                 <Item product={product} key={product.Id}/>

@@ -17,9 +17,9 @@ export default function ItemCount ({Stock, Initial}){
 // Render
     return(
         <>
-            <input type="button" value="-" onClick={handleCountMenus} />
+            <input type="button" value="-" onClick={handleCountMenus} className="PrimaryButton"/>
             {count}
-            <input type="button" value="+" onClick={handleCountPlus} />
+            <input type="button" value="+" onClick={handleCountPlus} className="PrimaryButton"/>
         </>
     )
 }

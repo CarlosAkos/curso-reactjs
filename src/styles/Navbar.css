@@ -1,6 +1,6 @@
 .Header{
-    background-color: rgb(244, 244, 244);
-    padding: 24px 60px;
+    background-color: #f4f4f4;
+    padding: 1.5rem 3rem;
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -13,19 +13,28 @@
     justify-content: space-between;
 }
 
-.NavOptions, a{
+.NavOptions > a{
     text-decoration: none;
-    color: rgb(60, 60, 60);
+    color: #3c3c3c;
 }
 
-.NavOptions, a:hover{
+.NavOptions > a:hover{
     color:#0880A1;
 }
 
 .CartWidget{
     display: flex;
+    align-items: center;
 }
 
-.CartWidget, p{
+.CartWidget > p{
     padding-left: 8px;
+}
+
+.CartWidget > a{
+    color: #3c3c3c;
+}
+
+.CartWidget > a:hover{
+    color: #0880A1;
 }

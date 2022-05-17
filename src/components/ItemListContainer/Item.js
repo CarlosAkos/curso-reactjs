@@ -7,7 +7,7 @@ export default function Item({product}){
                 <p>{product.Title}</p>
                 <p>Precio: {product.Price}</p>
                 <p>Stock Disponible: {product.Stock}</p>
-                <button>Ver más</button>
+                <button className="PrimaryButton">Ver más</button>
             </div>
         </div>
     )
