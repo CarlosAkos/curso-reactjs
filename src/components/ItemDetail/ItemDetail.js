@@ -1,17 +1,19 @@
 import ItemCount from "../itemCount/ItemCount"
-export default function ItemDetail(){
+import { Button } from "react-bootstrap"
+export default function ItemDetail({ProductItem}){
+    console.log(ProductItem)
     return(
         <div className="GridProductContainer">
             <div className="ItemGrid1">
-                <img src="/images/product-corei3-intel.jpg"/>
+                <img src={ProductItem.Img}/>
             </div>
             <div className="ItemGrid2">
                 <div>
-                    <h1>Título del producto</h1>
-                    <p>Stock Disponible:</p>
-                    <p>$55.000</p>
-                    <ItemCount Stock={2} Initial={1} /><br />
-                    <button className="PrimaryButton">Comprar</button>
+                    <h1>{ProductItem.Title}</h1>
+                    <p>Stock Disponible: {ProductItem.Stock}</p>
+                    <p>${ProductItem.Price}</p>
+                    <ItemCount Stock={ProductItem.Stock} Initial={1} /><br />
+                    <Button>Comprar</Button>
                 </div>
             </div>
             <div className="ItemGrid3">

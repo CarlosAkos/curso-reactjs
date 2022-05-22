@@ -1,13 +1,13 @@
-import CartWidget from "./CartWidget"
-
+import CartWidget from "../CartWidget/CartWidget"
+import {NavLink} from "react-router-dom"
 export default function header() {
     return(
         <nav className="Header">
-            <h1 style={{color: '#0880A1'}}>LOGO</h1>
+            <NavLink to="/" className="navbar-brand">LOGO</NavLink>
             <div className="NavOptions">
-                <a href="#">Inicio</a>
-                <a href="#">Productos</a>
-                <a href="#">Contacto</a>
+                <NavLink to="/">Inicio</NavLink>
+                <NavLink to="/products">Productos</NavLink>
+                <NavLink to="/">Contacto</NavLink>
                 <CartWidget itemsInCart={2}/>
             </div>
         </nav>

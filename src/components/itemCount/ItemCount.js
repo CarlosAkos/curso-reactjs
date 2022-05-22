@@ -1,4 +1,5 @@
 import React from "react"
+import { Button } from "react-bootstrap"
 export default function ItemCount ({Stock, Initial}){
 
 // Funciones manejadoras del contador 
@@ -17,9 +18,9 @@ export default function ItemCount ({Stock, Initial}){
 // Render
     return(
         <>
-            <input type="button" value="-" onClick={handleCountMenus} className="PrimaryButton"/>
+            <Button value="-" onClick={handleCountMenus}>-</Button>
             {count}
-            <input type="button" value="+" onClick={handleCountPlus} className="PrimaryButton"/>
+            <Button value="-" onClick={handleCountPlus}>+</Button>
         </>
     )
 }

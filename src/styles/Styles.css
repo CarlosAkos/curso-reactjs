@@ -1,5 +1,4 @@
 @import url(./Navbar.css);
-@import url(./CardItem.css);
 @import url(./ItemDetail.css);
 *{
     padding: 0;
@@ -7,32 +6,11 @@
     box-sizing: border-box;
 }
 
-.PrimaryButton{
-    font-size: 16px;
-    padding: 5px 16px;
-    color: white;
-    background-color: #0880A1;
-    border-radius: 25px;
-    border-style: none;
-}
-
 .ItemListContainer{
     display: flex;
     box-sizing: border-box;
     justify-content: space-evenly;
     flex-wrap: wrap;
-}
-
-p{
-    padding-bottom: 16px;
-}
-
-p, li{
-    font-size: 14px;
-}
-
-h1, h2, h3{
-    padding-bottom: 16px;
 }
 
 ul{

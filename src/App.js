@@ -1,13 +1,8 @@
-import Navbar from "./components/Navbar/Navbar";
-import ItemlistContainer from "./components/ItemListContainer/ItemListContainer";
-import ItemDetail from "./components/ItemDetailContainer/ItemDetail";
-
+import AppShell from "./AppShell";
 function App() {
   return (
     <>
-      <Navbar />
-      <ItemlistContainer greetings={"¡Hola nuevamente!"}/>
-      <ItemDetail />
+    <AppShell />
     </>
   );
 }
