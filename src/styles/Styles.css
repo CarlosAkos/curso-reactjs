@@ -16,3 +16,12 @@
 ul{
     list-style-position: inside;
 };
+
+.Countstyle{
+    padding: 20px !important;
+    color: red !important;
+}
+
+button{
+    margin: 25px;
+}

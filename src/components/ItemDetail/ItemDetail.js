@@ -1,19 +1,52 @@
 import ItemCount from "../itemCount/ItemCount"
 import { Button } from "react-bootstrap"
+import {NavLink} from "react-router-dom"
+import React from "react"
 export default function ItemDetail({ProductItem}){
-    console.log(ProductItem)
+
+const [itemAddToCart, setitemAddToCart] = React.useState({})
+
+// Funciones manejadoras del contador 
+const Initial = 1
+const [count, setCount] = React.useState(Initial)
+const handleCountMenus = () => {
+     if(count > 1){
+        setCount(count - 1)
+     }
+ }
+ const handleCountPlus = () => {
+    if(count < ProductItem.Stock){
+       setCount(count + 1)
+    }
+}
+
+// Botones de compra
+const [action, setaction] = React.useState("comprar")
+const AddToCart = ()=> {
+    return(<Button style={{marginTop: "20px"}} onClick={()=>{setitemAddToCart({units: count, Title: ProductItem.Title,
+        Price: ProductItem.Price,
+        Img: ProductItem.Img,}); setaction("ir al carrito")}}>Agregar al Carrito</Button>)
+}
+
+const GoToCart = ()=> {
+    return(<NavLink to="/Cart"><Button style={{marginTop: "20px"}} variant="success">Ir al Carrito</Button></NavLink>)
+}
+
+const ButtonCart = action === "comprar" ? AddToCart : GoToCart
+
     return(
         <div className="GridProductContainer">
             <div className="ItemGrid1">
-                <img src={ProductItem.Img}/>
+                <img src={ProductItem.Img} alt={ProductItem.Title}/>
             </div>
             <div className="ItemGrid2">
                 <div>
                     <h1>{ProductItem.Title}</h1>
                     <p>Stock Disponible: {ProductItem.Stock}</p>
                     <p>${ProductItem.Price}</p>
-                    <ItemCount Stock={ProductItem.Stock} Initial={1} /><br />
-                    <Button>Comprar</Button>
+                    <ItemCount count={count} handleCountPlus={handleCountPlus}  handleCountMenus={handleCountMenus}/><br />
+                    <ButtonCart />
+                    {/* <Button style={{marginTop: "20px"}} onClick={()=>console.log("hola")}>Agregar al Carrito</Button> */}
                 </div>
             </div>
             <div className="ItemGrid3">

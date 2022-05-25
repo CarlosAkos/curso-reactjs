@@ -5,7 +5,6 @@ import {useParams} from "react-router-dom"
 export default function ProductsDetailView(){
     
     const { productId } = useParams();
-    console.log(productId)
 
 return(
         <>
