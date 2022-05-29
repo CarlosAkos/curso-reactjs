@@ -29,8 +29,6 @@ export default function ItemListContainer({categoryId}){
 
     },[categoryId])
 
-console.log("desde Item container", categoryId)
-console.log(ProductList)
     return(
         <>
         <ItemList ProductList={ProductList}/>

@@ -23,12 +23,9 @@
 }
 
 .CartWidget{
-    display: flex;
+    /* display: flex;
     align-items: center;
-}
-
-.CartWidget > p{
-    padding-left: 8px;
+    justify-content: center; */
 }
 
 .CartWidget > a{
@@ -37,4 +34,12 @@
 
 .CartWidget > a:hover{
     color: #0880A1;
+}
+
+.InCart{
+    color: white;
+    width: 20px;
+    height: 20px;
+    background-color: #0880A1;
+    border-radius: 10px
 }

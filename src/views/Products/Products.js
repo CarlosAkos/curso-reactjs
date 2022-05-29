@@ -4,9 +4,7 @@ import ItemListContainer from "../../components/ItemListContainer/ItemListContai
 import {useParams} from "react-router-dom"
 export default function Products(){
 
-const { categoryId } = useParams();
-console.log(categoryId)
-    
+const { categoryId } = useParams();    
 return(
         <>
             <Navbar />

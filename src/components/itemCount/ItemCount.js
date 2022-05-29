@@ -1,6 +1,6 @@
 import React from "react"
 import { Button } from "react-bootstrap"
-export default function ItemCount ({handleCountMenus, handleCountPlus, count}){
+export default function ItemCount ({onAdd, onDecrease, count}){
 
 // ACA ESTABA LA FUNCIONES MANEJADORAS DEL CONTADOR 
 //  const [count, setCount] = React.useState(Initial)
@@ -18,9 +18,9 @@ export default function ItemCount ({handleCountMenus, handleCountPlus, count}){
 // Render
     return(
         <>
-            <Button style={{marginRight: "10px"}} value="-" onClick={handleCountMenus}>-</Button>
+            <Button style={{marginRight: "10px"}} value="-" onClick={onDecrease}>-</Button>
             <span>{count}</span>
-            <Button style={{marginLeft: "10px"}} value="-" onClick={handleCountPlus}>+</Button>
+            <Button style={{marginLeft: "10px"}} value="-" onClick={onAdd}>+</Button>
         </>
     )
 }

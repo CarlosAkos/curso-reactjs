@@ -2,19 +2,22 @@ import ItemCount from "../itemCount/ItemCount"
 import { Button } from "react-bootstrap"
 import {NavLink} from "react-router-dom"
 import React from "react"
+import { CartContext } from "../CartContext/CartContext"
 export default function ItemDetail({ProductItem}){
 
-const [itemAddToCart, setitemAddToCart] = React.useState({})
+ //Usando el contexto
+ const {addToCart} = React.useContext(CartContext)
 
-// Funciones manejadoras del contador 
-const Initial = 1
-const [count, setCount] = React.useState(Initial)
-const handleCountMenus = () => {
+ // Declaración de constantes para el contador
+const [count, setCount] = React.useState(1)
+
+// Funciones manejadoras del contador
+const onDecrease = () => {
      if(count > 1){
         setCount(count - 1)
      }
  }
- const handleCountPlus = () => {
+ const onAdd = () => {
     if(count < ProductItem.Stock){
        setCount(count + 1)
     }
@@ -23,9 +26,7 @@ const handleCountMenus = () => {
 // Botones de compra
 const [action, setaction] = React.useState("comprar")
 const AddToCart = ()=> {
-    return(<Button style={{marginTop: "20px"}} onClick={()=>{setitemAddToCart({units: count, Title: ProductItem.Title,
-        Price: ProductItem.Price,
-        Img: ProductItem.Img,}); setaction("ir al carrito")}}>Agregar al Carrito</Button>)
+    return(<Button style={{marginTop: "20px"}} onClick={()=>addToCart(ProductItem, count, setaction)}>Agregar al Carrito</Button>)
 }
 
 const GoToCart = ()=> {
@@ -34,6 +35,8 @@ const GoToCart = ()=> {
 
 const ButtonCart = action === "comprar" ? AddToCart : GoToCart
 
+
+// Renderizado
     return(
         <div className="GridProductContainer">
             <div className="ItemGrid1">
@@ -44,9 +47,8 @@ const ButtonCart = action === "comprar" ? AddToCart : GoToCart
                     <h1>{ProductItem.Title}</h1>
                     <p>Stock Disponible: {ProductItem.Stock}</p>
                     <p>${ProductItem.Price}</p>
-                    <ItemCount count={count} handleCountPlus={handleCountPlus}  handleCountMenus={handleCountMenus}/><br />
+                    <ItemCount count={count} onAdd={onAdd}  onDecrease={onDecrease}/><br />
                     <ButtonCart />
-                    {/* <Button style={{marginTop: "20px"}} onClick={()=>console.log("hola")}>Agregar al Carrito</Button> */}
                 </div>
             </div>
             <div className="ItemGrid3">
