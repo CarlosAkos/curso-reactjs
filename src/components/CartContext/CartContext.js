@@ -1,6 +1,4 @@
 import React, { createContext } from "react"
-import { Card } from "react-bootstrap";
-
 export const CartContext = createContext();
 const {Provider} = CartContext
 
@@ -50,6 +48,8 @@ export default function CartProvider({children}){
         <Provider value={{
             Cart,
             addToCart,
+            deleteAll,
+            removeFromCart,
         }}>{children}</Provider>
     )
 

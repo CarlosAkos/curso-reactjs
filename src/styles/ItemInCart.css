@@ -1,0 +1,45 @@
+.ItemInCartGrid{
+    display: grid;
+    grid-template-areas:
+        'RemoveProduct ImgProduct DetailProduct DetailProduct  PriceProduct';
+    padding: 16px;
+    border-bottom: solid 1px #cccccc;
+}
+
+.RemoveProduct{
+    grid-area: RemoveProduct;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pointerTrash{
+    cursor: pointer;
+}
+
+.ImgProduct{
+grid-area: ImgProduct;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+}
+
+.ImgProduct > img{
+    width: 4rem;
+}
+
+.DetailProduct > h2{
+    font-size: 1.5rem;
+}
+
+.PriceProduct{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    color: #0880A1;
+}
+
+.PriceProduct > p{
+    margin-bottom: 0px !important;
+}

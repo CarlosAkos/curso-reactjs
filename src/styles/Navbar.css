@@ -21,11 +21,9 @@
 .NavOptions > a:hover{
     color:#0880A1;
 }
-
+ 
 .CartWidget{
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
+    text-decoration: none;
 }
 
 .CartWidget > a{
@@ -38,8 +36,7 @@
 
 .InCart{
     color: white;
-    width: 20px;
-    height: 20px;
-    background-color: #0880A1;
-    border-radius: 10px
+    padding: 5px;
+    background-color: red;
+    border-radius: 25px;
 }
