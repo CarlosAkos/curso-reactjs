@@ -17,4 +17,12 @@
 
 ul{
     list-style-position: inside;
-};
+}
+
+.loadingStyle{
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

@@ -4,7 +4,7 @@ export default function Footer(){
             <div className="container-fluid">
                 <div className="row">
                     <div className="col">
-                        <a className="navbar-brand" href="#">LOGO</a>
+                        <a className="navbar-brand" href="#">TECHNOHARDWARE</a>
                     </div>
 
                     <div className="col">

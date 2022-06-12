@@ -1,26 +1,37 @@
 import React from "react"
 import { Button } from "react-bootstrap"
-export default function ItemCount ({onAdd, onDecrease, count}){
+export default function ItemCount ({max, initial, haveButton=false, buttonName="", handleOnClick}){
 
-// ACA ESTABA LA FUNCIONES MANEJADORAS DEL CONTADOR 
-//  const [count, setCount] = React.useState(Initial)
-//  const handleCountMenus = () => {
-//      if(count > 1){
-//         setCount(count - 1)
-//      }
-//  }
-//  const handleCountPlus = () => {
-//     if(count < Stock){
-//        setCount(count + 1)
-//     }
-// }
+ // Declaración de constantes para el contador
+ const [count, setCount] = React.useState(initial)
+
+
+// Funciones manejadoras del contador
+const onDecrease = () => {
+    if(count > 1){
+       setCount(count - 1)
+    }
+}
+const onAdd = () => {
+   if(count < max){
+      setCount(count + 1)
+   }
+}
+
 
 // Render
     return(
-        <>
-            <Button style={{marginRight: "10px"}} value="-" onClick={onDecrease}>-</Button>
-            <span>{count}</span>
-            <Button style={{marginLeft: "10px"}} value="-" onClick={onAdd}>+</Button>
-        </>
+        <div>
+            <div>
+                <Button style={{marginRight: "10px"}} value="-" onClick={onDecrease}>-</Button>
+                <span>{count}</span>
+                <Button style={{marginLeft: "10px"}} value="-" onClick={onAdd}>+</Button>
+            </div>
+            <div>
+                {haveButton ? 
+                <Button style={{marginTop: "20px"}} onClick={()=>handleOnClick(count)}>{buttonName}</Button> : <></>    
+                }   
+            </div>
+        </div>
     )
 }

@@ -3,52 +3,36 @@ import { Button } from "react-bootstrap"
 import {NavLink} from "react-router-dom"
 import React from "react"
 import { CartContext } from "../CartContext/CartContext"
-export default function ItemDetail({ProductItem}){
+export default function ItemDetail({productItem}){
 
  //Usando el contexto
  const {addToCart} = React.useContext(CartContext)
 
- // Declaración de constantes para el contador
-const [count, setCount] = React.useState(1)
 
-// Funciones manejadoras del contador
-const onDecrease = () => {
-     if(count > 1){
-        setCount(count - 1)
-     }
- }
- const onAdd = () => {
-    if(count < ProductItem.Stock){
-       setCount(count + 1)
-    }
+const [quantity, setQuantity] = React.useState(0)
+
+const handleOnAdd = (quantity)=>{
+    addToCart(productItem, quantity)
+    setQuantity(quantity)
 }
 
-// Botones de compra
-const [action, setaction] = React.useState("comprar")
-const AddToCart = ()=> {
-    return(<Button style={{marginTop: "20px"}} onClick={()=>addToCart(ProductItem, count, setaction)}>Agregar al Carrito</Button>)
-}
-
-const GoToCart = ()=> {
-    return(<NavLink to="/Cart"><Button style={{marginTop: "20px"}} variant="success">Ir al Carrito</Button></NavLink>)
-}
-
-const ButtonCart = action === "comprar" ? AddToCart : GoToCart
-
-
+console.log(productItem)
 // Renderizado
     return(
         <div className="GridProductContainer">
             <div className="ItemGrid1">
-                <img src={ProductItem.Img} alt={ProductItem.Title}/>
+                <img src={productItem.img} alt={productItem.title}/>
             </div>
             <div className="ItemGrid2">
                 <div>
-                    <h1>{ProductItem.Title}</h1>
-                    <p>Stock Disponible: {ProductItem.Stock}</p>
-                    <p>${ProductItem.Price}</p>
-                    <ItemCount count={count} onAdd={onAdd}  onDecrease={onDecrease}/><br />
-                    <ButtonCart />
+                    <h1>{productItem.title}</h1>
+                    <p>Stock Disponible: {productItem.stock}</p>
+                    <p>${productItem.price}</p>
+                    {
+                        quantity === 0 ?
+                        <ItemCount max={productItem.stock} initial={1} haveButton buttonName="Agregar al carrito" handleOnClick={handleOnAdd}/> : <NavLink to="/Cart"><Button style={{marginTop: "20px"}} variant="success">Ir al Carrito</Button></NavLink> 
+
+                    }
                 </div>
             </div>
             <div className="ItemGrid3">

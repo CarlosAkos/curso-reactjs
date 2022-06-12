@@ -1,44 +1,26 @@
 import React from "react";
 import ItemDetail from "../ItemDetail/ItemDetail";
-import Data from "../../Data/data.json"
-export default function ItemListContainer({productId}){
+import {useParams} from "react-router-dom"
+import { getProduct } from "../../services/firebase";
+import { Spinner } from "react-bootstrap";
+export default function ItemDetailContainer(){
     
-    const [ProductItem, setProductItem] = React.useState({});
-    const PromiseCoder = new Promise((resolve, reject) =>{
-        setTimeout(() => {
-            let condition = true
-            // if(condition){
-            //     resolve(Data)
-            // }else{
-            //     reject("Error al traer información")
-            // }
-            condition ? resolve(Data) : reject("Error al traer información") 
-        }, 3000);
-    })
+    const { productId } = useParams();
+
+    const [productItem, setProductItem] = React.useState({});
+    const [loading, setLoading] = React.useState(false);
 
 
     React.useEffect(()=>{
-        PromiseCoder
-        .then((res)=>
-            setProductItem(res.find(item => item.Id === +productId))
-         )
-        .catch((err)=>console.log(err))
-
+        setLoading(true)
+        getProduct("productos", productId).then((product)=> {setProductItem(product)}).catch(error =>{console.log(error)}).finally(()=>{setLoading(false)})
     },[productId])
 
 
-
-    // React.useEffect(()=>{
-    //     PromiseCoder
-    //     .then((res)=>setProductList(res))
-    //     .catch((err)=>console.log(err))
-
-    // },[])
-
-    // console.log(ProductList)
     return(
         <>
-        <ItemDetail ProductItem={ProductItem} />
+        {loading === true ? <div className="loadingStyle"><div><p>Cargando</p><Spinner animation="border" /></div></div> : <ItemDetail productItem={productItem} />}
+        
         </>   
     )
 }

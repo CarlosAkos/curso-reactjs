@@ -1,20 +1,20 @@
-import {Card, Button, Row, Col} from "react-bootstrap"
+import {Card, Button, Col} from "react-bootstrap"
 import {useNavigate} from "react-router-dom"
 export default function Item({product}){
    const navigate = useNavigate()
     return(
         <Col>
             <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={product.Img} />
+                <Card.Img variant="top" src={product.img} />
                 <Card.Body>
-                <Card.Title>{product.Title}</Card.Title>
+                <Card.Title>{product.title}</Card.Title>
                 <Card.Text>
-                    Precio: {product.Price}
+                    Precio: {product.price}
                 </Card.Text>
                 <Card.Text>
-                    Stock Disponible: {product.Stock}
+                    Stock Disponible: {product.stock}
                 </Card.Text>
-                <Button variant="primary" onClick={()=> navigate(`/product/${product.Id}`)}>Ver más</Button>
+                <Button variant="primary" onClick={()=> navigate(`/product/${product.id}`)}>Ver más</Button>
                 </Card.Body>
             </Card>
         </Col>

@@ -6,11 +6,11 @@ import {NavLink} from "react-router-dom"
 
 export default function ItemInCartContainer(){
    //Usando el contexto
-   const {Cart, deleteAll, removeFromCart} = React.useContext(CartContext) 
+   const {cart, deleteAll} = React.useContext(CartContext) 
     
    const PrecioTotal = function(){
         
-        const result = Cart.reduce((acc, item) => acc + item.quantity * item.Price, 0);
+        const result = cart.reduce((acc, item) => acc + item.quantity * item.price, 0);
         return(
             <div className="TotalPriceGrid">
                 <div className="Total">
@@ -32,39 +32,20 @@ export default function ItemInCartContainer(){
         )
     }
     
-    const EmptyCart = function(){
-        return(
-            <div className="EmptyCart">
-                <h2>El Carrito está vacio</h2>
-                <p>¡Visita nuestro catálogo y agrega alguno!</p>
-                <NavLink to="/products"><Button>Ver los productos</Button></NavLink>
-            </div>
-        )
-    }
 
-    
-    const DisplayCart = function(){
-        return( 
-            <div className="ItemInCartContainer">
-                {Cart.map((product) => {
-                    return(
-                        <ItemInCart product={product} key={product.Id}/>
-                    )
-                })}            
-                <PrecioTotal />
-                <CartActions />
-            </div>
-        )
-    }
-    
-
-    const ConditionCartRender = function(){
-     return(Cart.length === 0 ? <EmptyCart /> : <DisplayCart />)
-    }  
-    
-    
-    
     return(
-            <ConditionCartRender />
+        cart.length === 0 ? <div className="EmptyCart">
+        <h2>El Carrito está vacio</h2>
+        <p>¡Visita nuestro catálogo y agrega alguno!</p>
+        <NavLink to="/products"><Button>Ver los productos</Button></NavLink>
+    </div> : <div className="ItemInCartContainer">
+        {cart.map((product) => {
+            return(
+                <ItemInCart product={product} key={product.id}/>
+            )
+        })}            
+        <PrecioTotal />
+        <CartActions />
+    </div>
         )
 }

@@ -1,33 +1,31 @@
 import React, { createContext } from "react"
+import Toaster from "../Toaster/Toaster";
 export const CartContext = createContext();
 const {Provider} = CartContext
 
 export default function CartProvider({children}){
-    const [Cart, setCart] = React.useState([])
+    const [cart, setCart] = React.useState([])
 
     // addToCart
-    const addToCart = (ProductItem, count, setaction) => {
-        if(isInCart(ProductItem.Id)) {
-        const NewCart = Cart.map((cartItem) => {
-            if(cartItem.id === ProductItem.id) {
+    const addToCart = (productItem, count) => {
+        if(isInCart(productItem.id)) {
+        const newCart = cart.map((cartItem) => {
+            if(cartItem.id === productItem.id) {
             cartItem.quantity += count
-            console.log(Cart)
             }
             return cartItem
         })
-        setCart(NewCart)
+        setCart(newCart)
         }
         else {
-        setCart([...Cart, {...ProductItem, quantity: + count}]);
-        console.log(Cart)
+        setCart([...cart, {...productItem, quantity: + count}]);
         }
-        alert("¡producto agregado al carrito!")
-        setaction("")
+        <Toaster message="¡producto agregado al carrito!" />
     }
 
     //isInCart
-    const isInCart = (Id)=>{
-    return Cart.find((ProductItem) => ProductItem.Id === Id)
+    const isInCart = (id)=>{
+    return cart.find((productItem) => productItem.id === id)
      }
 
 
@@ -38,15 +36,15 @@ export default function CartProvider({children}){
      }
 
      //removeFromCart
-    const removeFromCart = (Id) => {
-        const newCart = Cart.filter((cartItem) => cartItem.Id !== Id);
+    const removeFromCart = (id) => {
+        const newCart = cart.filter((cartItem) => cartItem.id !== id);
         setCart(newCart)
     }
 
 
     return(
         <Provider value={{
-            Cart,
+            cart,
             addToCart,
             deleteAll,
             removeFromCart,

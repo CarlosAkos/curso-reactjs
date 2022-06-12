@@ -1,6 +1,6 @@
 import React from "react"
 import Item from "../Item/Item"
-import {Container, Row, Col} from "react-bootstrap"
+import {Container, Row} from "react-bootstrap"
 export default function ItemList({ProductList}){
 
     return(
@@ -10,7 +10,7 @@ export default function ItemList({ProductList}){
                 <Row>
                     {ProductList.map((product) => {
                                 return(
-                                        <Item product={product} key={product.Id}/>
+                                        <Item product={product} key={product.id}/>
                                 )
                             })}
                 </Row>
