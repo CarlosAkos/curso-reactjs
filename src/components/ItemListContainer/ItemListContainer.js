@@ -17,8 +17,6 @@ export default function ItemListContainer({categoryId}){
 
     },[categoryId])
 
-    console.log(productList)
-
     return(
         <>
         {loading === true ? <div className="loadingStyle"><div><p>Cargando</p><Spinner animation="border" /></div></div> : <ItemList ProductList={productList}/>}

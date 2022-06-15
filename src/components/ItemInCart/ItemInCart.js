@@ -1,11 +1,11 @@
 import ItemCount from "../itemCount/ItemCount"
 import React from "react"
-import {CartContext} from "../CartContext/CartContext"
+import {CartContext} from "../../CartContext/CartContext"
 export default function ItemInCart({product}){
 
 const totalPrice = product.price * product.quantity;
    //Usando el contexto
-   const {removeFromCart, cart} = React.useContext(CartContext)
+   const {removeFromCart} = React.useContext(CartContext)
    
    const onDecrease = function(){
     if(product.quantity === 1){
@@ -21,7 +21,6 @@ const totalPrice = product.price * product.quantity;
     }
     }
     
-    console.log(cart)
     return(
         <div className="ItemInCartGrid">
             <div className="RemoveProduct">

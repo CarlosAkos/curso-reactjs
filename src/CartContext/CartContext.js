@@ -1,5 +1,5 @@
 import React, { createContext } from "react"
-import Toaster from "../Toaster/Toaster";
+import Toaster from "../components/Toaster/Toaster";
 export const CartContext = createContext();
 const {Provider} = CartContext
 
@@ -41,6 +41,8 @@ export default function CartProvider({children}){
         setCart(newCart)
     }
 
+    //Calculo del Precio Total    
+    const totalPrice = cart.reduce((acc, item) => acc + item.quantity * item.price, 0);
 
     return(
         <Provider value={{
@@ -48,6 +50,7 @@ export default function CartProvider({children}){
             addToCart,
             deleteAll,
             removeFromCart,
+            totalPrice,
         }}>{children}</Provider>
     )
 

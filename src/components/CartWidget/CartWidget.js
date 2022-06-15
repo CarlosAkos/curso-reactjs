@@ -1,4 +1,4 @@
-import { CartContext } from "../CartContext/CartContext"
+import {CartContext} from "../../CartContext/CartContext"
 import React from "react"
 import {Link} from "react-router-dom"
 export default function CartWidget(){

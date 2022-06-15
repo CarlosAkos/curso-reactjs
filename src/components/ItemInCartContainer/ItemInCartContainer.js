@@ -1,23 +1,23 @@
 import ItemInCart from "../ItemInCart/ItemInCart"
 import { Button } from "react-bootstrap"
-import {CartContext} from "../CartContext/CartContext"
+import {CartContext} from "../../CartContext/CartContext"
 import React from "react"
 import {NavLink} from "react-router-dom"
 
 export default function ItemInCartContainer(){
    //Usando el contexto
-   const {cart, deleteAll} = React.useContext(CartContext) 
-    
+   const {cart, deleteAll, totalPrice} = React.useContext(CartContext) 
+   
+   //pasar al cartcontext 
    const PrecioTotal = function(){
         
-        const result = cart.reduce((acc, item) => acc + item.quantity * item.price, 0);
         return(
             <div className="TotalPriceGrid">
                 <div className="Total">
                     <h3>Total</h3>
                 </div>
                 <div className="TotalPrice">
-                    <p>$ {result}</p>
+                    <p>$ {totalPrice}</p>
                 </div>
             </div>
         )
@@ -27,7 +27,7 @@ export default function ItemInCartContainer(){
         return(
             <div className="CartActions">
                 <Button variant="outline-danger" onClick={deleteAll}>Vaciar Carrito</Button>
-                <Button>Terminar Comprar</Button>
+                <NavLink to="/cart/checkout"><Button>Terminar Comprar</Button></NavLink>
             </div>
         )
     }

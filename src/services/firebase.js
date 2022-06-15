@@ -1,5 +1,5 @@
-import {getFirestore, getDoc, doc, getDocs, collection, query, where} from "firebase/firestore"
-
+import React from "react"
+import {getFirestore, getDoc, doc, getDocs, collection, query, where, addDoc, writeBatch} from "firebase/firestore"
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -21,18 +21,19 @@ initializeApp(firebaseConfig);
 
 export const db = getFirestore()
 
-    export function getProduct(collectionName, id){
-        const productRef = doc(db, collectionName, id)
-      
-        const product = getDoc(productRef).then((snapshot) =>{
-                if(snapshot.exists()){
-                   return({id:snapshot.id, ...snapshot.data()})
-                }
-            })
-            return(product)
-        }
+// Obtener producto unico desde Firebase
+export function getProduct(collectionName, id){
+    const productRef = doc(db, collectionName, id)
+    
+    const product = getDoc(productRef).then((snapshot) =>{
+            if(snapshot.exists()){
+                return({id:snapshot.id, ...snapshot.data()})
+            }
+        })
+        return(product)
+    }
 
-
+// Obtener productos desde Firebase
 export function getProducts(collectionName, categoryId){
     if(categoryId){
         const queryFilter =
@@ -54,3 +55,29 @@ export function getProducts(collectionName, categoryId){
         
     }  
 }
+
+// Enviar orden a Firebase
+export function sendOrder(data, cart, totalPrice){
+    const orderRef = collection(db, "orders")
+    // let orderId = ""
+    const order = {
+        buyer: data,
+        items: cart,
+        total: totalPrice,
+      };
+      addDoc(orderRef, order)
+    //   .then((({id})=> orderId = id))
+    console.log(order);
+    // return(orderId)
+}
+
+
+function updateProducts(cart){
+    const batch = writeBatch(db)
+    cart.forEach(item => {
+        const productRef = doc(db, "productos", item.id)
+        batch.update(productRef, {stock: 1})      
+    });
+    batch.commit()
+}
+

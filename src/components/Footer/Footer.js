@@ -1,6 +1,6 @@
 export default function Footer(){
     return(
-        <footer className="bg-light p-5">
+        <footer className="footer bg-light p-5">
             <div className="container-fluid">
                 <div className="row">
                     <div className="col">

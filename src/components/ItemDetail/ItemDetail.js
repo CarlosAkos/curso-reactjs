@@ -2,7 +2,7 @@ import ItemCount from "../itemCount/ItemCount"
 import { Button } from "react-bootstrap"
 import {NavLink} from "react-router-dom"
 import React from "react"
-import { CartContext } from "../CartContext/CartContext"
+import {CartContext} from "../../CartContext/CartContext"
 export default function ItemDetail({productItem}){
 
  //Usando el contexto
@@ -16,7 +16,6 @@ const handleOnAdd = (quantity)=>{
     setQuantity(quantity)
 }
 
-console.log(productItem)
 // Renderizado
     return(
         <div className="GridProductContainer">
