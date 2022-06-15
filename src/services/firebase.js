@@ -1,5 +1,4 @@
-import React from "react"
-import {getFirestore, getDoc, doc, getDocs, collection, query, where, addDoc, writeBatch} from "firebase/firestore"
+import {getFirestore, getDoc, doc, getDocs, collection, query, where, addDoc, runTransaction} from "firebase/firestore"
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -56,28 +55,43 @@ export function getProducts(collectionName, categoryId){
     }  
 }
 
+
+
 // Enviar orden a Firebase
-export function sendOrder(data, cart, totalPrice){
+export function SendOrder(data, cartDetail, totalPrice, cart){
     const orderRef = collection(db, "orders")
-    // let orderId = ""
     const order = {
         buyer: data,
-        items: cart,
+        items: cartDetail,
         total: totalPrice,
       };
-      addDoc(orderRef, order)
-    //   .then((({id})=> orderId = id))
-    console.log(order);
-    // return(orderId)
-}
-
-
-function updateProducts(cart){
-    const batch = writeBatch(db)
-    cart.forEach(item => {
-        const productRef = doc(db, "productos", item.id)
-        batch.update(productRef, {stock: 1})      
+      const idRef = addDoc(orderRef, order)
+      .then((item)=>{
+        console.log("Felicidades tu compra fue registrada con el ID:" + item.id)
+      updateProducts(cart); 
+      return(item.id)
     });
-    batch.commit()
+      return(idRef)
 }
 
+const updateProducts = async (cart) => {
+    cart.forEach( async (item) => {
+      const productRef = doc(db, `productos`, item.id)
+      await runTransaction(db, async (transaction) => {
+      const transfDoc = await transaction.get(productRef);
+      if (!transfDoc.exists()) {
+        console.error("El documento no existe")
+      }
+      const newStock = transfDoc.data().stock - item.quantity;
+      transaction.update(productRef, { stock: newStock });
+    });
+    })
+  }
+// function updateProducts(cart){
+//     const batch = writeBatch(db)
+//     cart.forEach(item => {
+//         const productRef = doc(db, "productos", item.id)
+//         batch.update(productRef, {stock: 1})      
+//     });
+//     batch.commit()
+// }

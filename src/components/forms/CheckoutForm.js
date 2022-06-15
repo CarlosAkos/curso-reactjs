@@ -1,21 +1,32 @@
 import {Form, Button} from "react-bootstrap"
 import React from "react"
 import { CartContext } from "../../CartContext/CartContext"
-import { sendOrder } from "../../services/firebase"
+import { SendOrder } from "../../services/firebase"
 export default function CheckoutForm(){
     const {cart, totalPrice} = React.useContext(CartContext) 
     const [data, setData] = React.useState()  
+
+    const cartDetail = cart.map((item)=>{
+        const obj = {};
+        obj.title = item.title;
+        obj.price = item.price;
+        obj.quantity = item.quantity;
+        obj.id = item.id;
+        return obj;
+    })    
     
     const handleChange = (event) => {
         const { name, value } = event.target;
         setData({ ...data, [name]: value });
       }
-    console.log(data, cart, totalPrice)
 
+    const [orderId, setOrderId] = React.useState()
     const handleSubmit = (event) => {
         event.preventDefault();
-        sendOrder(data, cart, totalPrice)
-        // .then((orderId) => console.log("tu orden fue procesada con éxito. El Id de tu compra es:",  orderId))
+        SendOrder(data, cartDetail, totalPrice, cart)
+        .then((idRef) => {
+            setOrderId(idRef)
+        })
       }
 
     return(
@@ -42,6 +53,7 @@ export default function CheckoutForm(){
                 </Form.Group>
                 <Button variant="primary" type="submit">Continuar</Button>
             </Form>
+            {orderId ? <p>este es tu numero de orden: {orderId}</p> : <></>}
         </div>
     )
 
