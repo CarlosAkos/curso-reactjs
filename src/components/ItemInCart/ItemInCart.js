@@ -1,25 +1,11 @@
-import ItemCount from "../itemCount/ItemCount"
 import React from "react"
+import { useNavigate } from "react-router-dom";
 import {CartContext} from "../../CartContext/CartContext"
 export default function ItemInCart({product}){
-
+const navigate = useNavigate()
 const totalPrice = product.price * product.quantity;
    //Usando el contexto
    const {removeFromCart} = React.useContext(CartContext)
-   
-   const onDecrease = function(){
-    if(product.quantity === 1){
-        removeFromCart(product.id)
-    }else{
-        product.quantity--
-    }
-    }
-
-   const onAdd = function(){
-    if(product.quantity < product.stock){
-        product.quantity++
-    }
-    }
     
     return(
         <div className="ItemInCartGrid">
@@ -34,9 +20,8 @@ const totalPrice = product.price * product.quantity;
             </div>
             
             <div className="DetailProduct">
-                <h2>{product.title}</h2>
-                <p>productos agregados {product.quantity}</p>
-                <ItemCount initial={product.quantity} onAdd={onAdd} onDecrease={onDecrease}/>
+                <h2 className="productTleInCart" onClick={()=> navigate(`/product/${product.id}`)}>{product.title}</h2>
+                <p>productos agregados: <strong>{product.quantity}</strong></p>
             </div>
             
             <div className="PriceProduct">

@@ -12,22 +12,21 @@
 .ItemGrid2{
     grid-area: ItemGrid2;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
     border:solid 2px #f4f4f4;
     border-bottom: none;
     border-radius: 8px 8px 0px 0px;
+    padding: 5%;
 }
 
 .ItemGrid3{
     grid-area: ItemGrid3;
     background-color: #f4f4f4;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-}
-.ItemGrid3 > div{
-    width: 50%;
-    padding: 25px;
+    padding: 5%;
 }
 
 .GridProductContainer{
@@ -36,4 +35,10 @@
     grid-template-areas:
     'ItemGrid1 ItemGrid1 ItemGrid2'
     'ItemGrid3 ItemGrid3 ItemGrid3';
+}
+
+.toastMsg{
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
 }

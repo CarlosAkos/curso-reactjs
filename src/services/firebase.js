@@ -60,14 +60,16 @@ export function getProducts(collectionName, categoryId){
 // Enviar orden a Firebase
 export function SendOrder(data, cartDetail, totalPrice, cart){
     const orderRef = collection(db, "orders")
+    const orderDate = new Date()
     const order = {
         buyer: data,
         items: cartDetail,
         total: totalPrice,
+        date: orderDate.toLocaleString()
       };
       const idRef = addDoc(orderRef, order)
       .then((item)=>{
-        console.log("Felicidades tu compra fue registrada con el ID:" + item.id)
+        console.log("Felicidades tu compra fue registrada con el ID:" + item.id + order.date)
       updateProducts(cart); 
       return(item.id)
     });
@@ -87,11 +89,3 @@ const updateProducts = async (cart) => {
     });
     })
   }
-// function updateProducts(cart){
-//     const batch = writeBatch(db)
-//     cart.forEach(item => {
-//         const productRef = doc(db, "productos", item.id)
-//         batch.update(productRef, {stock: 1})      
-//     });
-//     batch.commit()
-// }

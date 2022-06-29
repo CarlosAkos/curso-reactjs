@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route  } from "react-router-dom"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Home from "./views/Home/home"
 import Products from "./views/Products/Products"
 import ProductsDetailView from "./views/ProductsDetailView/ProductsDetailView"
@@ -7,6 +7,8 @@ import Cart from "./views/Cart/Cart"
 import Navbar from "./components/Navbar/Navbar"
 import Footer from "./components/Footer/Footer"
 import Checkout from "./views/Checkout/Checkout"
+import PageNotFound from "./views/PageNotFound/PageNotFound"
+import CongratsPage from "./views/CongratsPage/CongratsPage"
 export default function AppShell(){
     return(
         <BrowserRouter>
@@ -19,6 +21,10 @@ export default function AppShell(){
                         <Route exact path="/product/:productId" element={<ProductsDetailView />}/>
                         <Route exact path="/cart" element={<Cart />}/>
                         <Route exact path="/cart/checkout" element={<Checkout />}/>
+                        <Route path="*" element={<PageNotFound/>}/>
+                        <Route path="/congrats" element={<CongratsPage />}/>
+
+                        
                     </Routes>
                 <Footer />
             </CartContext>

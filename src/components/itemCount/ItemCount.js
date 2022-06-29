@@ -2,7 +2,7 @@ import React from "react"
 import { Button } from "react-bootstrap"
 export default function ItemCount ({max, initial, haveButton=false, buttonName="", handleOnClick}){
 
- // Declaración de constantes para el contador
+ // Declaración de constante para el contador
  const [count, setCount] = React.useState(initial)
 
 

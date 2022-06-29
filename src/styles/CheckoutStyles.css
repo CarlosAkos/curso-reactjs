@@ -1,0 +1,60 @@
+.checkoutDetailContainer {
+    min-width: 50%;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgb(210, 210, 210);
+    padding: 5%;
+}
+
+.checkoutDetailGrid {
+    display: grid;
+    grid-template-areas: 'ImgCheckoutProduct DetailCheckoutProduct PriceProduct';
+    padding: 2%;
+}
+
+.ImgCheckoutProduct {
+    grid-area: ImgCheckoutProduct;
+    display: flex;
+    align-items: center;
+}
+
+.ImgCheckoutProduct > img {
+    height: 2rem;
+}
+
+.DetailCheckoutProduct > h3,
+p {
+    font-size: 1rem;
+    margin: 0 !important;
+}
+
+.PriceProduct {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    color: #0880A1;
+}
+
+.PriceProduct > p {
+    margin-bottom: 0 !important;
+}
+
+.checkoutDisplay {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 5%;
+}
+
+.TotalCheckoutFlex{
+    padding: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+.TotalPriceCheckout{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    color: #0880A1;
+    font-weight: 800;
+}

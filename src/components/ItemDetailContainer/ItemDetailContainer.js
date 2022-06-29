@@ -1,6 +1,6 @@
 import React from "react";
 import ItemDetail from "../ItemDetail/ItemDetail";
-import {useParams} from "react-router-dom"
+import {useParams, useNavigate} from "react-router-dom"
 import { getProduct } from "../../services/firebase";
 import { Spinner } from "react-bootstrap";
 export default function ItemDetailContainer(){
@@ -9,13 +9,21 @@ export default function ItemDetailContainer(){
 
     const [productItem, setProductItem] = React.useState({});
     const [loading, setLoading] = React.useState(false);
+    const history = useNavigate();
 
 
     React.useEffect(()=>{
         setLoading(true)
-        getProduct("productos", productId).then((product)=> {setProductItem(product)}).catch(error =>{console.log(error)}).finally(()=>{setLoading(false)})
+        getProduct("productos", productId).then((product)=> {
+            
+            if(product){
+                setProductItem(product)
+            }else{
+                history("/ProductoNoEncontrado");
+            }
+        
+        }).catch(error =>{console.log(error)}).finally(()=>{setLoading(false)})
     },[productId])
-
 
     return(
         <>

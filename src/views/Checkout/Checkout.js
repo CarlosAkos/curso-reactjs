@@ -1,9 +1,12 @@
 import CheckoutForm from "../../components/forms/CheckoutForm"
+import CheckoutDetail from "../../components/CheckoutDetail/CheckoutDetail"
 export default function Checkout(){
     return(
         <>
-            <p>Estar en el checkout</p>
-            <CheckoutForm />
+            <div className="checkoutDisplay">
+                <CheckoutForm />
+                <CheckoutDetail/>
+            </div>
         </>
     )
 

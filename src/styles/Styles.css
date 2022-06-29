@@ -2,6 +2,10 @@
 @import url(./ItemDetail.css);
 @import url(./ItemInCart.css);
 @import url(./ItemInCartContainer.css);
+@import url(./CheckoutStyles.css);
+@import url(./PageNotFound.css);
+@import url(./CongratsPage.css);
+
 *{
     padding: 0;
     margin: 0;
